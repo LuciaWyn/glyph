@@ -1,0 +1,51 @@
+﻿<style>
+    div{
+        font-family: Arial;
+        font-size: 20px;
+        width: 20px;
+        height: 20px; 
+        border-radius: 20px; 
+        padding: 3px; 
+        position: absolute;
+        text-align: center; 
+        background-color: white; 
+        border: 1px solid black;
+        display: none;
+    }
+</style>
+
+<img src="/images/source1Aa.png" alt="fadsf" style="display: inline-block; border: 1px solid black; position: relative;"/>
+<div id="1" style="top: 16px; left: 110px;">1</div>
+<div id="2" style="top: 90px; left: 197px;">2</div>
+<div id="3" style="top: 185px; left: 152px;">3</div>
+<div id="4" style="top: 90px; left: 80px;">4</div>
+<div id="5" style="top: 234px; left: 197px;">5</div>
+<div id="6" style="top: 293px; left: 197px;">6</div>
+<div id="7" style="top: 345px; left: 170px;">7</div>
+<div id="8" style="top: 450px; left: 165px;">8</div>
+<div id="9" style="top: 410px; left: 83px;">9</div>
+<br>
+ <button onclick="Order()" id="order">Reading Order</button>   
+
+
+
+
+<p>Source:</p>
+<p id="info" style="display: none;">James, T. (2004). THE GREAT PHARAOHS. Vercelli, Italy: White Star Publishers.</p>
+
+<script>
+    var ele = 1;
+    function Order()
+    {
+
+        document.getElementById(ele).style.display = 'block';
+        ele = ele + 1;
+
+    }
+
+
+</script>
+
+</html>
+
+

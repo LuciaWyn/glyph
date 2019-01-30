@@ -1,0 +1,13 @@
+﻿@{
+    <p>Select Quesitonaire, you would like to do:</p>
+
+    var db = Database.Open("Glyphs"); 
+    string choice = "SELECT * FROM Questionaires";
+}
+
+@foreach(var quiz in db.Query(choice)){
+    <div id="quizer">
+    <h3><a href="Tests/quiz.cshtml?quiz=@quiz.id">@quiz.Name</a></h3>
+    <p>@quiz.Description</p>
+    </div>
+}

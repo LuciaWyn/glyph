@@ -1,0 +1,126 @@
+﻿@RenderPage("design.cshtml")
+@{
+    var db = Database.Open("Glyphs"); 
+    var w = "Select * FROM words";
+    var i = "SELECT * FROM word_icons WHERE word_id = @0";
+
+    var pc = ".png";
+    var full = "110";
+    var half = "51";
+    var third = "36";
+    var tt = "72";
+    var prev = "";
+    var prev1 = "";
+    var px = "px";
+    var dot = 0;
+
+<h2>Words</h2>
+<script>
+    var wordblock = 0;
+</script>
+
+foreach(var find in db.Query(w)){
+        
+        var id = @find.id;
+        <div id="word">
+        <p>@find.sound</p>
+            
+        @foreach (var ic in db.Query(i, id)){
+               var pile = 0;
+               
+               var style = ic.style;
+
+               if (style == "-" && prev == "^"){
+                   prev = "-";
+                   prev1 = "^";
+                  var top = @ic.margintop - 30;
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; max-width: @half@px; position: absolute; margin-bottom:@ic.marginbottom; margin-top:@top@px; margin-left:@ic.margin; "/>
+                }
+               
+                else if (style == "-" && prev1 == "^" && prev == "-"){
+
+                
+                    prev = "-";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @full@px; max-width: @full@px ;"/>
+                }
+                else if (style == "-"){
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @full@px; max-width: @full@px ;"/>
+                    
+                }
+          
+                if (style == ":"){
+                    dot += 1;
+                    prev = ":";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; max-width: @half@px ; position: absolute; margin-top:0px;"/>
+                }
+                if (style == "^" ){
+        
+                    prev = "^";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @full@px; max-width: @full@px ;"/>
+                }
+                //style is 3
+                if (style == "3" && prev != "3"){
+                    dot += 1;
+                    prev = "3";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @half@px ; position: absolute; margin-top:0px;"/>
+                }
+                else if (style == "3" && prev == "3"){
+                    dot += 1;
+                    prev = "3";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @half@px ;position: absolute; padding-left:0px; margin-top:@third@px;"/>
+                }
+                
+                if (style == "" && prev == "-"){
+                   prev="0";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @full@px; max-width: @full@px;"/>
+                }
+                if (style == "" && prev == ":"){
+                   prev="0";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; max-width: @half@px; padding-left:0px;"/>
+                    
+                        }
+                if (style == "" && prev == "3"){
+                   prev="0";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @half@px ; padding-left:0px; margin-top:@third@px;"/>
+                        }
+                if (style == "-" && prev == "3"){
+                   prev="-";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @half@px ; padding-left:0px; margin-top:@third@px;"/>
+                        }
+                 if (style == "^" && prev == "3"){
+                   prev="-";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @half@px ; padding-left:0px; margin-top:@third@px;"/>
+                        }
+           }
+           
+           <p>@find.meaning</p>
+            <p><a href="word.cshtml?word=@id">More info...</a></p>
+             <script>
+               wo = document.getElementById("word");
+                                var word = wo.offsetHeight;
+                wordblock = wordblock + word;
+
+                         
+            </script>
+            </div>
+
+        
+    }
+}
+    <script>
+    var k = main.offsetHeight;
+
+                                                        head = document.getElementById("head");
+                                                        var hk = head.offsetHeight;
+                                                        nav = document.getElementById("nav");
+
+                                                        var kn = nav.offsetHeight;
+                                                        var ts = hk + kn + k + hk + wordblock+ 0;
+                                                        var pt = ts + "px";
+</script>
+
+
+@RenderPage("footer.cshtml")

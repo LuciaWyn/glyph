@@ -1,0 +1,247 @@
+﻿
+@{
+    var db = Database.Open("Glyphs");
+
+    }
+@{
+    if (IsPost){
+                 //password number error
+   
+                 int numc = 0;
+                 int num = 0;
+
+                     //error variable
+                    int error = 0;
+
+                    // username
+                    string userq = "SELECT * FROM users WHERE username = @0" ; 
+                    int uniq = 0;
+    
+
+                    //password free from dictionary attacks
+                    string dictionary = "SELECT *From dictionary WHERE word = @0";
+                    int md = 0;
+
+                    //password upper and lower error
+                    int l = 0;
+
+    
+
+                    //length erro
+                    int len = 0;
+
+                    // add a user
+                    string usersn = "SELECT * FROM users" ; 
+                    int userc = 1;
+
+                    //numbers only
+                    int onn = 0;
+
+                @RenderPage("design.cshtml")
+                var user = Request["user"];
+                var pass = Request["pass"];
+                var email = Request["email"];
+            
+
+                    //keep usernames unique for effective salting
+                    foreach(var unique in db.Query(userq, user) ){ 
+                        error = error + 1;
+                        uniq = uniq + 1;
+                    }
+                    //dictionary query in database
+                    foreach(var word in db.Query(dictionary, pass) ){
+                        error = error + 1;
+                        md = md + 1;
+                    }
+                    //make sure that password does not have only lower case letters
+                    var lower = pass.ToLower();
+                    
+                    if (lower == pass)
+                    {
+                        error = error + 1;
+                        l = l + 1;
+                    }
+                    //password uppercase check
+                    var upper = pass.ToUpper();
+                    if (upper == pass)
+                    {
+                        error = error + 1;
+                        l = l + 1;
+                    }
+
+                    //counting numbers in passwords
+                    int zero = pass.ToCharArray().Count(c => c == '0');
+                    int one = pass.Count(c => c == '1');
+
+                   
+                    int two = pass.Count(c => c == '2');
+                    int three = pass.Count(c => c == '3');
+                    int four = pass.Count(c => c == '4');
+                    int five = pass.Count(c => c == '5');
+                    int six = pass.Count(c => c == '6');
+                    int seven = pass.Count(c => c == '7');
+                    int eight = pass.Count(c => c == '8');
+                    int nine = pass.Count(c => c == '9');
+
+                    if(zero == 0){
+                        numc = numc + 1;
+                        
+                    }
+
+                    if(one == 0){
+                        numc = numc + 1;
+                        
+                    }
+
+                    if(two == 0){
+                        numc = numc + 1;
+                        
+                    }
+
+                    if(three == 0){
+                        numc = numc + 1;
+                        
+                    }
+                   
+                    if(four == 0){
+                        numc = numc + 1;
+                        
+                    }
+
+                    if(five == 0){
+                        numc = numc + 1;
+                        
+                    }
+
+                    if(six == 0){
+                        numc = numc + 1;
+                        
+                    }
+
+                    if(seven == 0){
+                        numc = numc + 1;
+                        
+                    }
+                   
+
+                    if(eight == 0){
+                        numc = numc + 1;
+                        
+                    }
+                    if(nine == 0){
+                        numc = numc + 1;
+                        
+                    }
+
+                  
+                    
+                    //password length
+                    if (pass.Length <= 7)
+                    {
+                        error = error +1;
+                        len = 1;
+                    }
+
+                   
+                    int sum = zero + one + two + three + four + five + six + seven + eight + nine;
+                    //password numbers only
+                    if (pass.Length == sum)
+                    {
+                        error = error +1;
+                        onn = onn + 1;
+                    }
+
+                    if (0 == sum)
+                    {
+                        error = error +1;
+                        num = num + 1;
+                    }
+
+                    <p>@numc @sum</p>
+
+                    //usercount
+                    foreach (var count in db.Query(usersn)){
+                        userc = userc + 1;
+                    }
+
+                    
+
+                    if(error != 0){
+                        <P>Warning: Each password must not be found in a dictionary.</P>   
+
+                        <form method="post" action="register.cshtml">
+                        <table>
+                            <tr>
+                        <td>Username:</td><td><input type="text" name="user"></input></td>
+                                </tr>
+                        @if (uniq == 1){
+                            
+                               <tr><td style="color: red;" colspan="2">Sorry username taken</td></tr>
+                                }
+                        <tr>
+                        <td>Password:</td><td> <input type="password" name="pass"></input></td>
+                         @if (md == 1){
+                            
+                               <tr><td style="color: red;" colspan="2">Sorry you cannot have a password found in the dictionary.</td></tr>
+                                }
+                         @if (onn == 1){
+                            
+                               <tr><td style="color: red;" colspan="2">Sorry you need to include letters.</td></tr>
+                                }
+                        @if (l == 1){
+                            
+                               <tr><td style="color: red;" colspan="2">Sorry you need to include both capitals and lower case letters.</td></tr>
+                                }
+                        @if (num == 1){
+                            
+                               <tr><td style="color: red;" colspan="2">Sorry you need to include at least one number.</td></tr>
+                                }
+                        @if (len == 1){
+                             <tr><td style="color: red;" colspan="2">Your password needs to be at least 8 characters long.</td></tr>
+                        }
+                        </tr><tr>
+                        <td>E-mail:</td><td> <input type="text" name="email"></input></td>
+                        </tr>
+                            </table>
+                        <input type="submit" name="submit" value="Submit"></input>
+                    </form>
+                    }
+                    else{
+
+                       pass = Crypto.SHA256(pass+user);
+
+                        <h2>Register</h2>
+                        <p>You have sucessfully registered</p>
+                         var insertQuery = "INSERT INTO users (id, username, password, email) " +
+                         "VALUES (@0, @1, @2, @3)";
+                         db.Execute(insertQuery, userc, user, pass, email);
+                    }
+                   
+                    }
+                    
+                    //protect against dictionary attacks
+            
+                    // saves password with the encryption.
+
+            
+    else{
+        @RenderPage("design.cshtml")
+        <P>Warning: Each password must not be found in a dictionary.</P>        
+
+        <form method="post" action="register.cshtml">
+            <table>
+                <tr>
+            <td>Username:</td><td><input type="text" name="user"></input></td>
+            </tr><tr>
+            <td>Password:</td><td> <input type="password" name="pass"></input></td>
+            </tr><tr>
+            <td>E-mail:</td><td> <input type="text" name="email"></input></td>
+            </tr>
+                </table>
+            <input type="submit" name="submit" value="Submit"></input>
+        </form>
+    }
+}
+
+
+@RenderPage("footer.cshtml")

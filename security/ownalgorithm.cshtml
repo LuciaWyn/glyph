@@ -1,0 +1,34 @@
+﻿@{
+    var pass= "des90P54IJH";
+    var hash = Crypto.SHA1(pass);
+    //var hash2 = Crypto.SHA256;
+    var passl1 = pass+pass+pass;
+    var passl2 = passl1.Replace("9", "I");
+    var passl3 = passl2.Replace("s", "O");
+    var passl4 = passl3.Replace("L", "k");
+    
+    var pass2 ="a";
+    var passu = "unsafe";
+    var tr = Crypto.SHA256(pass2 + passu);
+
+    var pass3 = "1";
+    var passi = "password";
+    var td = Crypto.SHA256(passi + pass3);
+}
+@RenderPage("design.cshtml")
+
+<P>@tr</P>
+
+<p>@td</p>
+
+<p>@hash</p>
+
+<h2>Customized algorithm encryption</h2>
+<p>original password: @pass</p>
+<table>
+<tr><td>level</td><td>password after stage one</td><td>How it works</td></tr>
+<tr><td>1</td><td>@passl1</td><td>lengthens the password by three</td></tr>
+<tr><td>2</td><td>@passl2</td><td>changes 9 to I</td></tr>
+</table>
+
+@RenderPage("../footer.cshtml")

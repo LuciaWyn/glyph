@@ -1,0 +1,173 @@
+body {
+    position: absolute;
+    width: 70%;
+    margin-left: 15%;
+    background-color: #ffd64d;
+    overflow-y: scroll;
+    min-height: 100%;
+}
+header{
+    width: 100%;
+}
+#nav {
+    width:  100%;
+ 
+     display: block;
+    float: left;
+    
+  
+    
+}
+/*
+main{
+    margin-left: 11%;
+    width: 90%;
+    position: absolute;
+}*/
+h1{
+    font-family: Arial;
+    font-size: 30px;
+}
+#nav ul{
+    list-style-type: none;
+    float: left;
+    text-align: left;
+    padding-left:  0px;
+    width: 100%;
+    
+    
+}
+#nav ul li{
+    padding: 5px 2px;
+    width: 7%;
+    border:  1px solid blue;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    color: #000;
+    background-color: white;
+    display: inline-block;
+    
+}
+#nav ul li a{
+    
+    text-decoration: none;
+    font-family: Arial;
+    color: black;
+
+}
+#nav ul li:hover{
+    background-color: #0094ff;
+    border:  1px solid yellow;
+}
+#nav ul li a:hover{
+    color: #ffd800;
+}
+p, h1, h2, h3 {
+    font-family: Arial;
+}
+table{
+    font-family: Arial;
+    text-align: left; 
+    padding: 2px;
+}
+
+#clf{
+    min-width: 400px;
+    width: 100%;
+   vertical-align: top;
+   background-color: #f5c71a;
+   padding: 10px;
+      display: table-row;
+    
+}
+#clf ul{
+    list-style-type: none;
+    float: left;
+    text-align: left;
+    padding-left:  3px;
+    font-weight: bold;
+ 
+    width: 90%;
+}
+#clf ul li
+{
+    margin-top: 3px;
+}
+#clf ul li a{
+    text-decoration: none;
+    font-family: Arial;
+    color: #002366;
+}
+#clf ul li {
+    border: 2px solid #b59107;
+}
+#clf ul li:hover {
+    background-color: white;
+}
+main{
+    width: 100%;
+    float: left;
+    padding: 2%;
+    padding-top: 10px;
+    margin-bottom: 50px;
+    display: block;
+    background-color: white;
+    
+}
+main p, h2, h3, ul, ol, image{
+    padding-left: 1%;
+    color:  black;
+}
+#icon{
+    display: inline;
+    margin-right: 10px;
+}
+#aquiz  {
+    list-style-type: none;
+    float: left;
+    text-align: left;
+    padding-left:  0px;
+    width: 100%;
+}
+#aquiz p  {
+    display:  inline;
+}
+
+#quizer {
+    padding-left: 1%;
+    border:  3px solid blue;
+    background-color: #ffd64d;
+    width: 30%;
+    display: inline-block;
+    margin-bottom: 50px;
+}
+#quizer h3, p {
+    color: blue;
+}
+
+#iconshow {
+    display: inline-block; 
+    width: 24%;
+}
+
+#lesson{
+    
+    width: 90%;
+    font-family: Arial;
+    color: #002366;
+}
+#lesson ul {
+    list-style-type: none;
+}
+#lesson ul li {
+    border: 2px solid black;
+    border-width: 2px;
+    width: 300px;
+    display:  inline-block;
+}
+#lesson a{
+    text-decoration: none;
+    font-family: Arial;
+    color: #002366;
+    
+}

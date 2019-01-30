@@ -1,0 +1,269 @@
+﻿@RenderPage("design.cshtml")
+@{
+    var db = Database.Open("Glyphs"); 
+    string t = Request.QueryString["icon"];
+    
+
+    var pn = ".png";
+
+    var icon = "SELECT * FROM icons Where name= @0";
+    var wicon = "SELECT * FROM word_icons Where icon= @0";
+    var wordn = "SELECT * FROM words Where id != @0";
+    var word = "SELECT * FROM words Where id != @0 AND id = @1";
+
+  
+    var pc = ".png";
+    
+
+
+
+    var nr = 0;
+    var ci = 0;
+    <script>
+        var iconcal = 0;
+    </script>
+
+    foreach(var row in db.Query(icon, t))
+    {
+        <div id="icon">
+        <h2>@row.name</h2>
+        <img src='/images/@row.name@pn' alt="@row.name" title="@row.name" id="icon"/>
+        <p>@row.name</p>
+        <p>@row.image</p>
+        </div>
+        <script>
+            var ic = icon.offsetHeight;
+            var iconcal = iconcal + ic.offsetHeigth;
+        </script>
+    }
+    foreach(var row in db.Query(wicon, t)){
+        ci = ci+1;
+    }
+    if (ci > 0){
+        <h3>Words with @t:</h3>
+    }
+    
+
+   
+    foreach(var wi in db.Query(wicon, t)){
+        var woi = wi.word_id;
+        //nr = wi.wprd_id;
+       
+      
+        foreach(var find in db.Query(word, nr, woi)){
+              
+    var full = "100";
+    var half = "50";
+    var minhalf = "80";
+    var third = "25";
+    var lessthird = "20";
+    var morehalf = "60";
+
+    var tt = "100";
+    var prev = "";
+    var prev1 = "";
+    var px = "px";
+    var dot = 0;
+    var icons = "";
+    var order = "word_id";
+    var h = ".html";
+    var qtr = "tr";
+    var tr2 ="tr2";
+
+    
+
+    var i = "SELECT * FROM word_icons WHERE word_id = @0 AND template != @1 AND template !=@2 ORDER BY orders";
+   var ytr = "SELECT * FROM word_icons WHERE word_id = @0 AND template = @1 ORDER BY orders";
+   var all = "SELECT * FROM word_icons WHERE word_id = @0 ORDER BY orders";
+
+
+
+             var id = @find.id;
+             nr = @find.id;
+
+        int tr = 1;
+        <div id="word" style="border:  1px solid black; margin:  10px; padding-left: 10px; padding-right: 10px; height:300px; display: inline-block;">
+        <p>Sound: @find.sound</p>
+
+          <table><tr>
+                 
+         @foreach (var ic in db.Query(i, id, qtr, tr2)){
+
+                        var or = @ic.orders;
+                        var image = @ic.icon;
+                        var plate = @ic.template;
+                        var r = @ic.rowspan;
+                        var c = @ic.colspan;
+                        var io = @or+@image;
+                        var height = @ic.height;
+                        var width = @ic.width;
+                        var v = @ic.valign;
+
+                       
+                        
+                <td style= "vertical-align:@v; text-align:center;" rowspan="@r" colspan="@c">
+                       
+                  @{
+              if(plate == "td"){
+                  <a href="../Signs/icon.cshtml?icon=@image">
+                      @{
+                  if (height == "full" && width == "full"){
+                  <img id="@or" src="/images/@image@pc" alt="@or" style="height: @full@px; max-width:@full@px;"/>
+                  }
+                  else if (height == "lessfull" && width == "half"){
+                  <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @minhalf@px; max-width:@half@px;"/>
+                  }
+                  else if (height == "lessfull" && width == "full"){
+                  <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @minhalf@px; max-width:@full@px;"/>
+                  }
+                  else if (height == "lessfull" && width == "lessfull"){
+                  <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @minhalf@px; max-width:@minhalf@px;"/>
+                  }
+                  else if (height == "full" && width == "lessfull"){
+                  <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @full@px; max-width:@minhalf@px;"/>
+                  }
+                  else if (height== "half" && width == "full"){
+                      <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @half@px; max-width: @full@px;"/>
+                  }
+                  else if (height== "half" && width == "half"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @half@px; max-width: @half@px;"/>
+                      }
+                 else if (height== "third" && width == "full"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @third@px; max-width: @full@px;"/>
+                      }
+                else if (height== "third" && width == "third"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @third@px; max-width: @third@px;"/>
+                      }
+                else if (height== "full" && width == "half"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @full@px; max-width: @half@px;"/>
+                      }
+                else if (height== "lessthird" && width == "full"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @lessthird@px; max-width: @full@px;"/>
+                      }
+               else if (height == "morehalf" && width == "morehalf"){
+                  <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @morehalf@px; max-width:@morehalf@px;"/>
+                  }
+                      else{
+                        <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @height@px; max-width: @width@px; width: auto; margin-left: 0;"/>
+                  
+                    }
+                      }
+                   </a>
+              }
+              
+              else if (plate == "div"){
+                  
+                  <div style="margin-left:@ic.margin; margin-top:@ic.margintop@px;"><img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @height@px; max-width: @full@px; "/></div>
+                  
+                      }
+              
+              }
+              </td>
+                  
+                        
+           }   
+              </tr>
+              
+              
+             <tr>
+              @foreach (var ic in db.Query(ytr, id, qtr)){
+                        var or = @ic.orders;
+                        var image = @ic.icon;
+                        var plate = @ic.template;
+                        var r = @ic.rowspan;
+                        var c = @ic.colspan;
+                        var io = @or+@image;
+                        var height = @ic.height;
+                        var width = @ic.width;
+                        var v = @ic.valign;
+                        
+                        
+                                  
+                    <td style= "vertical-align:@v; text-align:center;" rowspan ="@r" colspan="@c">
+                        @{
+                      if (height == "full" && width == "full"){
+                      <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @full@px; max-width:@full@px;"/>
+                      }
+                      else if (height== "half" && width == "full"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @half@px; max-width: @full@px;"/>
+                      }
+                      else if (height== "half" && width == "half"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @half@px; max-width: @half@px;"/>
+                      }
+                      else if (height== "third" && width == "full"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @third@px; max-width: @full@px;"/>
+                      }
+                      else if (height== "third" && width == "third"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @third@px; max-width: @third@px;"/>
+                      }
+                      else if (height== "lessthird" && width == "full"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @lessthird@px; max-width: @full@px;"/>
+                      }
+                      else if (height == "morehalf" && width == "full"){
+                        <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @morehalf@px; max-width:@full@px;"/>
+                      }
+                      else if (height == "full" && width == "full"){
+                        <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @morehalf@px; max-width:@full@px;"/>
+                      }
+                      else{
+                        <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @height@px; width: auto; margin-left: 0;"/>
+                  
+                    }
+                  }
+                    </td>
+                          
+                        }
+            </tr>  
+              <tr>
+              @foreach (var ic in db.Query(ytr, id, tr2)){
+                        var or = @ic.orders;
+                        var image = @ic.icon;
+                        var plate = @ic.template;
+                        var r = @ic.rowspan;
+                        var c = @ic.colspan;
+                        var io = @or+@image;
+                        var height = @ic.height;
+                        var width = @ic.width;
+
+                        
+                        
+                                  
+                    <td style="text-align: center;" rowspan ="@r" colspan="@c">
+                    @{if (height== "third" && width == "third"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @third@px; max-width: @full@px;"/>
+                      }
+                      else if (height== "third" && width == "full"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @third@px; max-width: @full@px;"/>
+                      }
+                      else if (height== "lessthird" && width == "full"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @lessthird@px; max-width: @full@px;"/>
+                      }
+                       else if (height== "third" && width == "half"){
+                          <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @third@px; max-width: @half@px;"/>
+                      }
+                    else{
+                        <img id="@or" src="/images/@image@pc" alt="@or" style="max-height: @height@px; width: auto; margin-left: 0;"/>
+                  
+                    } }
+                      </td>     
+                        }
+                  </tr> 
+              </table>
+           
+                        <br>
+           
+         
+            <p>Meaning: @find.meaning</p>
+            
+            <p><a href="/Words/cells.cshtml?word=@find.id">More info...</a></p>
+
+            </div>
+           
+
+        
+    }
+    }
+}
+
+
+@RenderPage("../footer.cshtml")

@@ -1,0 +1,53 @@
+﻿
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Hieroglyphs</title>
+        <link href="../bigscreen.css" rel="stylesheet" type="text/css" >
+    </head>
+    <body>
+        <canvas id='canvas'>
+                  <script>
+          var fscreen = screen.height;
+          var ascreen = screen.width;
+var cscreen=document.getElementById("canvas");
+var ctx=cscreen.getContext("2d");
+var my_gradient=ctx.createLinearGradient(0,0,0,200);
+my_gradient.addColorStop(0,"yellow");
+my_gradient.addColorStop(1,"red");
+ctx.fillStyle=my_gradient;
+ctx.fillRect(0,0,ascreen,fscreen);
+</script>
+
+</canvas>
+        <header id="head">
+            <h1>Ancient Egyptain Hieroglyphs</h1>
+        </header>
+        <div id="nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="../signs.cshtml">Signs</a></li>
+                <li><a href="../words">Words</a></li>
+                <li><a href="../literature">Literature</a></li>
+                <li><a href="../tests.cshtml">Tests</a></li>
+                <li><a href="../Lessons.cshtml">Lessons</a></li>
+                @{
+                    if (Session["logout"] != null){
+                        <li><a href="../login.cshtml">Log in</a></li>
+                    }
+                    if(Session["logged"] != null){
+                        <li><a href="../logout.cshtml">Log out</a></li>
+                    }
+                    else{
+                        <li><a href="../login.cshtml">Log in</a></li>
+                    }
+                }
+            </ul>
+            
+        </div>
+        
+           
+        <main id="main">

@@ -1,0 +1,527 @@
+﻿@RenderPage("design.cshtml")
+@{
+var db = Database.Open("Glyphs"); 
+//string signtype = Request.QueryString["quiz"];
+string signtype = Request.QueryString["quiz"];
+ 
+
+string inn = "SELECT top 1 * FROM signs ORDER BY NEWID()";
+
+
+string table = "icons";
+string nd = "SELECT top 3 * FROM signs ORDER BY NEWID()";
+string type = "default";
+
+
+/*
+            string number = Request["no"];
+         int nu = number.AsInt();
+  */                      
+                    
+        string ic = ".png";
+        var not = "2";
+    
+        var c = 0;
+        var g = 0; 
+        var p = 0;
+
+        var right = "declared";
+        var thro = 0;
+        
+       // var qu = "qu";
+        }
+
+<h2>Unilateral Signs</h2>
+
+
+        
+
+                     
+           
+           <button onclick="fin()" id="result" style="display: none;">Finish</button>
+                
+@{
+     if (IsPost){
+
+         string number = Request["no"];
+                     int nu = number.AsInt();
+
+                     <div id="results" style="display: none;">
+                         
+                         <table id="score">
+                        @{                                         
+                         for (int r = 0; r < nu; r++){
+                             var fq = "f"+thro;
+                             var fr = "fr"+thro;
+                             
+                             
+                             
+                                var een = "scr"+thro;    
+                                <tr><td><img id="@een" src='/images/A1.png' alt="Question"/></td><td><p id="@fq"></p></td><td><p id="@fr"></p></td></tr>
+                            
+                            thro = thro + 1;
+                         }
+                        }
+                          </table>
+
+                         <p id="tscore"></p>
+                     </div>
+
+        <script>
+            /*
+            var t = 0;
+            var f = 0;*/
+        </script>
+
+  for (int n = 0; n < nu; n++){
+                          
+                           
+                          var qu  = "qu"+@p;
+                           <div id='@qu' style="display: none;"> 
+                               
+                        
+                           
+                              
+
+                         @foreach(var tests in db.Query(inn, signtype)){
+                          
+                           
+                                  
+                                        <br>
+                                    <br>
+                                    var pi = @tests.Icon;
+                                  
+                                      //   pi == "OnlyInAlphabet";
+                                         <img src='/images/@tests.Icon@ic' alt="@tests.Icon"/>
+                                       
+                                      
+                                           
+                                        <script>
+                                        
+                                            var pici = "scr"+@p;
+                                           
+                                            
+                                            document.getElementById(pici).src = "/images/@tests.Icon@ic";
+                                                               
+                                         </script>   
+                                    
+                                        right = @tests.Sound;
+                                        
+                                    
+                                   // right = right;
+                                   var fq = "f"+p;
+                                   var rp = "right"+p;
+                                    p = p + 1;
+                                 //   <p id="@rp" style="display: none;">@right</p>
+                                    
+                                    <script>
+                                        var right = "@right";
+                                        document.getElementById("@{@fq;}").innerHTML = "@right";
+                                                                
+                                    </script>
+  
+                                 string j = "default";
+                                 string k = "default";
+                                 string ot = "default";
+
+                                 foreach(var ts in db.Query(nd, signtype)){
+                                      
+                                
+                            
+                            if (@c == 0){
+                  
+                                           j = @ts.Sound;
+                                                  c = @g + 1; 
+                                                <script>
+                                                        var j = "@j";
+                                                    </script>  
+                                               
+                                                  
+                                                  
+                                                  continue;
+                                              }
+                            if (@c == 1){
+                                k = @ts.Sound;
+                            
+                
+                                                    g = c;
+                                                  c = @g + 1; 
+                                                    
+                                                    //<p>@k</p>;
+                                                    <script>
+                                                        var k = "@k";
+                                                    </script>
+                                                    continue;
+                                                }
+                            if (@c == 2){
+                                ot = @ts.Sound;
+                            
+                                                      g = c;
+                                                  c = @g + 1; 
+                                                    ot = @ts.Sound;
+                                                    //<p>@k</p>;
+                                                    <script>
+                                                        var ot = "@ot";
+                                                    </script>
+                                                    continue;
+                                                }
+                                                if (@c == 3){
+
+                                                    //done to make value unique on the page
+                    
+                                                  break;
+                                             }
+                                             
+        
+                                    }
+                           
+
+                            
+                                 
+                           
+                            
+
+                             var sa = "a"+@p;
+                                      var sb = "b"+@p;
+                                       var sc = "c"+@p;
+                
+                                       var oa = "oa"+@p;
+                                       var ob = "ob"+@p;
+                                       var oc = "oc"+@p;
+
+                   
+                                                    
+                        
+                                            <table>
+                                                   <col width="20%">
+                                                   <col width="80%">
+
+                                          <tr><td><input type="radio" id="@oa" name="answer"></input></td><td id="@sa"></td> </tr>
+                                                    <tr><td><input type="radio" id="@ob" name="answer"></input></td><td id="@sb"></td> </tr>
+                                                    <tr><td><input type="radio" id="@oc" name="answer"></input></td><td id="@sc"></td></tr>
+                                                    
+                       
+                                            </table>
+
+          
+                        
+                                        string work= "working"+@p;
+                                string signs = "signs"+@p+"()";
+                           
+                     
+                                                   <script>
+                                                        
+
+                                                       //javascript rearrange
+                                                      var options = [right, j, k];
+                                                              
+                                                       if ( j == right && ot != right){
+                                                         var options = [right, ot, k];
+                                                       }
+                                                       if ( k == right && ot != right){
+                                                         var options= [right, j, ot];
+                                                       }
+                                   
+                      
+                                                        var truth = "@{@right;}";
+
+                                                        var w = Math.random(2).toFixed(0);
+                     
+                                    
+                                    
+
+                       
+                                                       
+                                                       var n = Math.random(1).toFixed(0);
+                       
+                                                       if (w == 0)
+                                                       {
+                                                            
+                                                            document.getElementById("@sa").innerHTML = options["0"];
+
+                                                            if (n == 0)
+                                                            {
+                                            
+                                                                document.getElementById("@{ @sc;}").innerHTML = options["2"];
+                                                                document.getElementById("@{ @sb;}").innerHTML = options["1"];
+                                                            }
+                                                            else if (n == 1)
+                                                            {
+                                           
+                                                                document.getElementById("@{ @sc;}").innerHTML = options["1"];
+                                                                document.getElementById("@{ @sb;}").innerHTML = options["2"];
+                                                            }
+                                                       }       
+                                                       if (w == 1 ) {
+ 
+                                                            document.getElementById("@sa").innerHTML = options["1"];
+
+                                                            if (n == 0)
+                                                            {
+                                           
+                                                                document.getElementById("@{ @sb;}").innerHTML = options["0"];
+                                                                document.getElementById("@{ @sc;}").innerHTML = options["2"];
+                                                            }
+                                                            else if (n == 1)
+                                                            {
+                                                                document.getElementById("@{ @sb;}").innerHTML = options["2"];
+                                                                document.getElementById("@{ @sc;}").innerHTML = options["0"];
+                                                                
+                                                            }
+                                                       }                
+                    
+                                                       if (w == 2) {
+
+                                  
+                                                            document.getElementById("@sa").innerHTML = options["2"];
+                                                           
+                            
+                                                            if (n == 0)
+                                                            {
+                                                                document.getElementById("@{ @sc;}").innerHTML = opt["1"];
+                                                                document.getElementById("@{ @sb;}").innerHTML = opt["0"];
+                                                            }
+                                                            else if (n == 1)
+                                                            {
+                                                                document.getElementById("@{ @sc;}").innerHTML = opt["0"];
+                                                                document.getElementById("@{ @sb;}").innerHTML = opt["1"];
+                                                            }
+                       
+                                                       }
+                                           
+                                               /*document.getElementById("@work").innerHTML = +right;*/
+                                   
+                                              
+                                                      var f = 0;
+                                                      var t = 0;
+
+                                       function @signs
+
+                                        {
+                                            var a = document.getElementById("@{ @oa;}").checked;
+                                            var b = document.getElementById("@{@ob;}").checked;
+                                            var c = document.getElementById("@{@oc;}").checked;
+                                            
+                                            var aa = document.getElementById("@{@sa;}").innerHTML;
+                                            var ab = document.getElementById("@{@sb;}").innerHTML;
+                                            var ac = document.getElementById("@{@sc;}").innerHTML;
+
+                                            
+
+                                            
+                                            var pb = @{@p;}-1;
+                                            var pp = "qu"+ pb;
+                                            var ps = "qu"+ "@{@p;}";
+                                            var tot = @{@nu;}; 
+                                            var fr = "fr"+pb;
+                                         //   var rp = "right"+"@{@p;}";  
+
+                                            var truth = "@{@right;}";
+
+                                             if (aa == truth) 
+                                                {
+                                                       
+
+                                                    if (a == true)
+                                                    {
+                                                           ++t;
+                                                       document.getElementById(fr).innerHTML = aa;
+                                                    }
+
+                                                    if (b == true) 
+                                                    {
+                                                        ++f;
+                                                       document.getElementById(fr).innerHTML = ab;
+                                                    }
+
+                                                    if (c == true) 
+                                                    {
+                                                        ++f;
+                                                       document.getElementById(fr).innerHTML = ac;
+                                                    }
+                                                 }
+                                                else if (ab == truth) 
+                                                {
+                                                    
+                                                    if (a == true)
+                                                    {
+                                                           ++f;
+                                                       document.getElementById(fr).innerHTML = aa;
+                                                    }
+
+                                                    if (b == true) 
+                                                    {
+                                                        ++t;
+                                                       document.getElementById(fr).innerHTML = ab;
+                                                    }
+
+                                                    if (c == true) 
+                                                    {
+                                                        ++f;
+                                                       document.getElementById(fr).innerHTML = ac; 
+                                                    }
+                                                 }
+                                                else if (ac == truth) 
+                                                {
+                                                    
+                                                    if (a == true)
+                                                    {
+                                                           ++f;
+                                                       document.getElementById(fr).innerHTML = aa;
+                                                    }
+
+                                                    if (b == true) 
+                                                    {
+                                                        ++f;
+                                                       document.getElementById(fr).innerHTML = ab;
+                                                    }
+
+                                                    if (c == true) 
+                                                    {
+                                                        ++t;
+                                                       document.getElementById(fr).innerHTML = ac;
+                                                    }
+                                                 }
+
+
+                                            if ("@{@p;}" == tot)
+                                                       {
+
+                                                      // f = tot - t;   
+                                                        document.getElementById("results").style.display = 'block';
+                                                        document.getElementById(pp).style.display = 'none';
+                                                        document.getElementById("tscore").innerHTML = "Your scored " +t+ " out of "+tot+ ". You made "+f+" mistakes.";
+
+                                                         var k = main.offsetHeight;
+
+                                                        head = document.getElementById("head");
+                                                        var hk = head.offsetHeight;
+                                                        nav = document.getElementById("nav");
+
+                                                        var kn = nav.offsetHeight;
+                                                        var ts = hk + kn + k + hk + 100;
+                                                        var pt = ts + "px";
+
+
+
+
+                                                        document.getElementById("end").style.top = pt;
+                                                        
+                                                       }  
+                                            else {  
+                                                document.getElementById(ps).style.display = 'block';
+                                                document.getElementById(pp).style.display = 'none';
+
+                                                       var k = main.offsetHeight;
+
+                                                        head = document.getElementById("head");
+                                                        var hk = head.offsetHeight;
+                                                        nav = document.getElementById("nav");
+
+                                                        var kn = nav.offsetHeight;
+                                                        var ts = hk + kn + k + hk + 100;
+                                                        var pt = ts + "px";
+
+
+
+
+                                                        document.getElementById("end").style.top = pt;
+                                                      
+                                               }
+                                            
+
+                                               
+                                              
+
+                                         
+                                        }
+                                                       
+                                    </script>
+                                    string wok= "working"+@p;
+                                string sign = "signs"+@p+"()";
+                                <p id="@wok"></p>
+                                                    
+                                    <button onclick="@sign">a</button>
+                                      
+                                 
+                        }
+                                    
+                     </div>
+                 
+                     
+                      
+
+                        
+                    }
+                    <script>
+                        function start()
+                        {
+                            
+                            document.getElementById("qu0").style.display = 'block';
+                            document.getElementById("start").style.display = 'none';
+
+                            var k = main.offsetHeight;
+
+                                                        head = document.getElementById("head");
+                                                        var hk = head.offsetHeight;
+                                                        nav = document.getElementById("nav");
+
+                                                        var kn = nav.offsetHeight;
+                                                        var ts = hk + kn + k + hk + 100;
+                                                        var pt = ts + "px";
+
+
+
+
+                                                        document.getElementById("end").style.top = pt;
+                            
+                        }
+                     </script>
+                    <button onclick="start()" id="start">Begin</button>
+                   
+       }
+                    
+
+        else
+        {
+        
+
+           <h2>Select the number questions, you would like.</h2>
+
+            <form method="post" action="">
+                <select name="no">
+                    @{
+
+                int som = 10;
+                int count = 9;
+              
+                
+                  
+                for (int amount = 10; amount <= 100; amount++){
+               
+                 <option value='@amount'>@amount</option><br>
+            
+
+
+             
+             
+         
+               
+                
+                     amount  = amount + count;
+   
+                }
+            }
+            
+                    </select>
+             <input type="submit" value="Submit" class="submit">
+            </form>
+        
+            
+            
+        }
+
+        }
+     
+            @RenderPage("footer.cshtml")
+

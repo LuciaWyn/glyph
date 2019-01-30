@@ -1,0 +1,94 @@
+﻿@RenderPage("design.cshtml")
+@{
+    var db = Database.Open("Glyphs"); 
+    var w = "Select * FROM words WHERE id = @0";
+    var i = "SELECT * FROM word_icons WHERE word_id = @0 ORDER BY orders";
+
+    string word = Request.QueryString["word"];
+
+    var pc = ".png";
+    var full = "220";
+    var half = "100";
+    var minhalf = "75";
+    var third = "50";
+
+    var tt = "100";
+    var prev = "";
+    var prev1 = "";
+    var px = "px";
+    var dot = 0;
+    var icons = "";
+    var order = "word_id";
+    var h = ".html";
+
+<h2>Words</h2>
+<script>
+    var wordblock = 0;
+</script>
+
+foreach(var find in db.Query(w, word)){
+        
+        var id = @find.id;
+        var lay = "../layouts/"+@find.layout;
+ 
+        prev = "-";
+        <div id="word">
+        <p>Sound: @find.sound</p>
+
+            @RenderPage(@lay)
+                 
+         
+        @foreach (var ic in db.Query(i, id)){
+                var or = @ic.orders;
+                var image = @ic.icon;
+
+                <script>
+                    var order = @or;
+
+                    document.getElementById(order).src = "/images/@image@pc";
+                </script>
+             
+                    
+                
+           }
+            <br>
+            <ol id ="list" >Icon list:
+              
+            @foreach (var list in db.Query(i, id)){
+                <li><a href="../Signs/icon.cshtml?icon=@list.icon">@list.icon</a></li>
+                
+            }
+           </ol>
+         
+            <p>Meaning: @find.meaning</p>
+            
+             <script>
+               wo = document.getElementById("word");
+                                var word = wo.offsetHeight;
+                wordblock = wordblock + word;
+
+                         
+            </script>
+
+            </div>
+           
+
+        
+    }
+    
+}
+    <script>
+    var k = main.offsetHeight;
+
+                                                        head = document.getElementById("head");
+                                                        var hk = head.offsetHeight;
+                                                        nav = document.getElementById("nav");
+
+                                                        var kn = nav.offsetHeight;
+                                                       var ts = hk + kn + hk + wordblock+ 0;
+                                                        var pt = ts + "px";
+</script>
+
+
+@RenderPage("footer.cshtml")
+

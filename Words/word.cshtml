@@ -1,0 +1,227 @@
+﻿@RenderPage("design.cshtml")
+@{
+    var db = Database.Open("Glyphs"); 
+    var w = "Select * FROM words WHERE id = @0";
+    var i = "SELECT * FROM word_icons WHERE word_id = @0 ORDER BY orders";
+
+    string word = Request.QueryString["word"];
+
+    var pc = ".png";
+    var full = "220";
+    var half = "100";
+    var minhalf = "75";
+    var third = "50";
+
+    var tt = "100";
+    var prev = "";
+    var prev1 = "";
+    var px = "px";
+    var dot = 0;
+    var icons = "";
+    var order = "word_id";
+    
+
+<h2>Words</h2>
+<script>
+    var wordblock = 0;
+</script>
+
+foreach(var find in db.Query(w, word)){
+        
+        var id = @find.id;
+        prev = "-";
+        <div id="word">
+        <p>Sound: @find.sound</p>
+         
+        @foreach (var ic in db.Query(i, id)){
+               var pile = 0;
+               
+               
+               var style = ic.style;
+               
+               if (style == "-" && prev == "^"){
+                   prev = "-";
+                   prev1 = "^";
+                   
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; max-width: @half@px; position: absolute; margin-bottom:@ic.marginbottom; margin-top:@ic.margintop@px; margin-left:@ic.margin; "/>
+                }
+                else if (style == ":" && prev == "^"){
+                   prev = ":";
+                   prev1 = "^";
+                   
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; max-width: @half@px; position: absolute; margin-bottom:@ic.marginbottom; margin-top:@ic.margintop@px; margin-left:@ic.margin; "/>
+                }
+               
+                else if (style == "-" && prev1 == "^" && prev == "-"){
+
+                
+                    prev = "-";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @full@px; max-width: @full@px ;"/>
+                }
+                
+                else if (style == "-" && prev == "-" && prev1 !=":"){
+                    <script>
+                       alert(here);
+                   </script>
+                    prev = "-";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @full@px; max-width: @full@px ;  margin:auto;"/>
+                    
+                }
+                else if (style == "-" && prev1 == ":" && prev == "-"){
+
+                
+                    prev = "-";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @full@px; max-width: @full@px ; position:absolute; padding-left:@full@px;"/>
+                }
+                if (style == ":" && prev == "-" && prev1 == "3"){
+                    dot += 1;
+                    prev = ":";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; min-height:@half@px; min-width:@half@px; max-width: @full@px ; position: absolute; margin-top:0px; padding-left:@half@px;"/>
+                }
+                else if (style == "-" && prev == ":" && prev1 == "3"){
+                    dot += 1;
+                    prev = ":";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; min-height:@half@px; min-width:@half@px; max-width: @full@px ; position: absolute; margin-top:@half@px; padding-left:@half@px;"/>
+                }
+                else  if (style == ":" && prev == "-" && prev1 != "3"){
+                    dot += 1;
+                    prev = ":";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; min-height:@half@px; min-width:@half@px; max-width: @full@px ; position: absolute; margin-top:0px;"/>
+                }
+                if (style == "-" && prev == ":" && prev1 != "3"){
+                   
+                    prev = "-";
+                    prev1 = ":";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; max-width: @full@px ; min-height:@half@px; min-width:@half@px; position: absolute; margin-left:inherit; margin-top:@half@px;"/>
+                }
+          
+               
+                if (style == "^" ){
+        
+                    prev = "^";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @full@px; max-width: @full@px ;"/>
+                }
+                //style is 3
+                if (style == "3" && prev != "3"){
+                    dot += 1;
+                    prev = "3";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @half@px ; position: absolute; margin-top:0px;"/>
+                }
+                else if (style == "3" && prev == "3"){
+                    dot += 1;
+                    prev = "3";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @half@px ;position: absolute; padding-left:0px; margin-top:@third@px;"/>
+                }
+                /*
+                else if (style == "-" && prev == "3"){
+                    dot += 1;
+                    prev = "-";
+                    prev1="3";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @third@px ;position: absolute; padding-left:0px; margin-top:@tt@px;"/>
+                }
+                if (style == "-" && prev1 == "3" && prev == "-"){
+                    prev = "-";
+                    prev1 = "-";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @full@px; max-width: @full@px ; position:absolute; padding-left:@third@px; margin-top:@half@px;"/>
+                }*/
+                if (style == "3*2" && prev != "3*2"){
+                    dot += 1;
+                    prev = "3*2";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @full@px ; position: absolute; margin-top:0px;"/>
+                }
+                else if (style == "3*2" && prev == "3*2"){
+                    dot += 1;
+                    prev = "3*2";
+                    
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @full@px ;position: absolute; padding-left:0px; margin-top:@third@px;"/>
+                }
+                
+                if (style == "" && prev == "-"){
+                   prev="0";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @full@px; max-width: @full@px;"/>
+                }
+                /*
+                else if (style == "" && prev == ":"){
+                   prev="0";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; max-width: @half@px; "/>
+                    
+                        }*/
+                if (style == "" && prev == "3"){
+                   prev="0";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @half@px ; padding-left:0px; margin-top:@tt@px;"/>
+                        }
+                if (style == "-" && prev == "3"){
+                   prev="-";
+                   prev1="3";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @half@px ; padding-left:0px; margin-top:@tt@px;"/>
+                        }
+                 if (style == "^" && prev == "3"){
+                   prev="^";
+                   prev1="3";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @third@px; max-width: @half@px ; padding-left:0px; margin-top:@tt@px; "/>
+                        }
+                        /*
+                if (style == ":" && prev == "-"){
+                   prev=":";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; max-width: @half@px; padding-left:0px;"/>
+                    
+                        }
+                if (style == "-" && prev == ":"){
+                   prev="-";
+                    <img src="../images/@ic.icon@pc" alt="@ic.icon" style="max-height: @half@px; max-width: @half@px; padding-left:0px;"/>
+                    
+                        } */
+                    
+                
+           }
+            <br>
+            <ol id ="list" >Icon list:
+              
+            @foreach (var list in db.Query(i, id)){
+                <li><a href="../Signs/icon.cshtml?icon=@list.icon">@list.icon</a></li>
+            }
+           </ol>
+           @if(id == 49){
+            <script>
+                document.getElementById("list").style.marginTop = '220px'; 
+            </script>
+             }     
+            <p>Meaning: @find.meaning</p>
+            
+             <script>
+               wo = document.getElementById("word");
+                                var word = wo.offsetHeight;
+                wordblock = wordblock + word;
+
+                         
+            </script>
+
+            </div>
+           
+
+        
+    }
+    
+}
+    <script>
+    var k = main.offsetHeight;
+
+                                                        head = document.getElementById("head");
+                                                        var hk = head.offsetHeight;
+                                                        nav = document.getElementById("nav");
+
+                                                        var kn = nav.offsetHeight;
+                                                       var ts = hk + kn + hk + wordblock+ 0;
+                                                        var pt = ts + "px";
+</script>
+
+
+@RenderPage("footer.cshtml")

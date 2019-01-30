@@ -1,0 +1,17 @@
+﻿@{
+   
+    
+    int count = 9;
+}
+
+<h2>Select the number questions, you would like to do</h2>
+
+
+@for (int amount = 10; amount <= 100; amount++){
+    <p><a href="?@amount">@amount</a></p>
+
+    // no @ worked in making it work
+    amount  = @amount + @count;
+   
+}
+

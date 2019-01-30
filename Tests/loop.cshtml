@@ -1,0 +1,31 @@
+﻿
+    
+
+
+<h2>Select the number questions, you would like.</h2>
+
+            <form method="post" action="questionairefile.cshtml">
+                <select name="no">
+                    @{
+            for (int amount = 10; amount <= 100; amount++){
+               
+
+                int som = amount;
+
+             <option value={@som;}>@som</option><br>
+
+
+
+             int count = 9;
+             
+         
+               
+                
+                 amount  = @amount + @count;
+   
+            }
+
+            }
+                    </select>
+             <input type="submit" value="Submit" class="submit">
+            </form> 

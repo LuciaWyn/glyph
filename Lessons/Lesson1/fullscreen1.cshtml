@@ -1,0 +1,247 @@
+﻿<img onclick="showCoords(event)" id="clicked" src="/images/Source1A1.png" alt="fadsf" style="display: inline-block; border: 1px solid black; width: 219px; height: 581px; top:0px; padding: 0; margin: 0;"/>
+
+
+ <div id="main1" style="display: inline-block; position: absolute;">      
+<p id="Selected" style="display: none;">You Selected</p> 
+
+<img src="/images/I10.png" alt="I10" id ="selection" style="display:none; margin:10px; top: auto; margin-top: 1px;"/>
+</div>
+
+
+<p>Source:</p>
+<p id="info" style="display: none;">James, T. (2004). THE GREAT PHARAOHS. Vercelli, Italy: White Star Publishers.</p>
+
+<p id="display"></p>
+<p id ="ii"></p>
+<script>
+    var a1 = 0;
+    var a2 = 0;
+    var a3 = 0;
+    var a4 = 0;
+    var a5 = 0;
+    var a6 = 0;
+    var a7 = 0;
+    var a8 = 0;
+
+    var a9 = 0;
+
+    function showCoords(event)
+    {
+        var locationtop = document.getElementById("clicked");
+
+        var locationleft = document.getElementById("clicked");
+        //document.getElementById("ii").innerHTML = "y: "+ locationtop.offsetTop + " x: "+ locationleft.offsetLeft;
+        var xa = event.clientX;
+        var ya = event.clientY;
+        var y = ya - locationtop.offsetTop;
+        var x = xa - locationtop.offsetLeft;
+        /*
+        var coords = "X coords: " + x + ", Y coords: " + y;
+        document.getElementById("display").innerHTML = coords;
+        */
+        //read through
+        var order = 0;
+        //already read
+
+
+        if (x >= 124 & x <= 131)
+        {
+            if (y <= 35 & y >= 26)
+            {
+
+                a1 = a1 + 1;
+
+            }
+        }
+
+        if (a1 == 1)
+        {
+
+            document.getElementById("selection").style.display = 'inline-block';
+            document.getElementById("selection").src = '/images/I10.png';
+            document.getElementById("Selected").style.display = 'inline-block';
+            document.getElementById("Selected").innerHTML = 'You selected:';
+
+
+        }
+        if (a1 > 1)
+        {
+            document.getElementById("selection").style.display = 'none';
+            alert('You Cannot select this again');
+        }
+
+        if (x >= 196 & x <= 204)
+        {
+            if (y <= 82 & y >= 76)
+            {
+                a2 = a2 + 1;
+            }
+        }
+        if (a2 == 1)
+        {
+
+            document.getElementById("selection").style.display = 'inline-block';
+            document.getElementById("selection").src = '/images/S43.png';
+            document.getElementById("Selected").style.display = 'inline-block';
+
+
+        }
+        if (a2 > 1)
+        {
+            document.getElementById("selection").style.display = 'none';
+            alert('You Cannot select this again');
+        }
+        if (x >= 150 & x <= 160)
+        {
+            if (y >= 170 & y <= 180)
+            {
+                a3 = a3 + 1;
+            }
+        }
+        if (a3 == 1)
+        {
+
+            document.getElementById("selection").style.display = 'inline-block';
+            document.getElementById("selection").src = '/images/M17.png';
+            document.getElementById("Selected").style.display = 'inline-block';
+
+
+        }
+        if (a3 > 1)
+        {
+            document.getElementById("selection").style.display = 'none';
+            alert('You Cannot select this again');
+        }
+        if (x >= 84 & x <= 94)
+        {
+            if (y >= 109 & y <= 119)
+            {
+                a4 = a4 + 1;
+            }
+        }
+        if (a4 == 1)
+        {
+
+            document.getElementById("selection").style.display = 'inline-block';
+            document.getElementById("selection").src = '/images/S3.png';
+            document.getElementById("Selected").style.display = 'inline-block';
+
+
+        }
+        if (a4 > 1)
+        {
+            document.getElementById("selection").style.display = 'none';
+            alert('You Cannot select this again');
+        }
+        if (x >= 198 & x <= 208)
+        {
+            if (y >= 240 & y <= 250)
+            {
+                a5 = a5 + 1;
+
+            }
+        }
+        if (a5 == 1)
+        {
+
+            document.getElementById("selection").style.display = 'inline-block';
+            document.getElementById("selection").src = '/images/N35.png';
+            document.getElementById("Selected").style.display = 'inline-block';
+
+
+        }
+        if (a5 > 1)
+        {
+            document.getElementById("selection").style.display = 'none';
+            alert('You Cannot select this again');
+        }
+        if (x >= 198 & x <= 208)
+        {
+            if (y >= 294 & y <= 304)
+            {
+                a6 = a6 + 1;
+            }
+        }
+        if (a6 == 1)
+        {
+
+            document.getElementById("selection").style.display = 'inline-block';
+            document.getElementById("selection").src = '/images/V26.png';
+            document.getElementById("Selected").style.display = 'inline-block';
+
+
+        }
+        if (a6 > 1)
+        {
+            document.getElementById("selection").style.display = 'none';
+            alert('You Cannot select this again');
+        }
+
+        if (x >= 174 & x <= 184)
+        {
+            if (y >= 346 & y <= 356)
+            {
+                a7 = a7 + 1;
+
+            }
+        }
+        if (a7 == 1)
+        {
+
+            document.getElementById("selection").style.display = 'inline-block';
+            document.getElementById("selection").src = '/images/D4.png';
+            document.getElementById("Selected").style.display = 'inline-block';
+
+
+        }
+        if (a7 > 1)
+        {
+            document.getElementById("selection").style.display = 'none';
+            alert('You Cannot select this again');
+        }
+        if (x >= 159 & x <= 169)
+        {
+            if (y >= 442 & y <= 452)
+            {
+                a8 = a8 + 1;
+
+            }
+        }
+        if (a8 == 1)
+        {
+
+            document.getElementById("selection").style.display = 'inline-block';
+            document.getElementById("selection").src = '/images/Q1.png';
+            document.getElementById("Selected").style.display = 'inline-block';
+
+
+        }
+        if (a8 > 1)
+        {
+            document.getElementById("selection").style.display = 'none';
+            alert('You Cannot select this again');
+        }
+        if (x >= 86 & x <= 96)
+        {
+            if (y >= 443 & y <= 453)
+            {
+                a9 = a9 + 1;
+            }
+        }
+        if (a9 == 1)
+        {
+
+            document.getElementById("selection").style.display = 'inline-block';
+            document.getElementById("selection").src = '/images/A40.png';
+            document.getElementById("Selected").style.display = 'inline-block';
+
+
+        }
+        if (a9 > 1)
+        {
+            document.getElementById("selection").style.display = 'none';
+            alert('You Cannot select this again');
+        }
+    }
+
+</script>

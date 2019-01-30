@@ -1,0 +1,14 @@
+﻿@{
+    var db = Database.Open("Glyphs");
+
+string auidence = "SELECT * FROM users" ; 
+}
+
+@RenderPage("design.cshtml")
+
+<form action="Updates2users.cshtml" method="post">
+    <textarea type="message" rows="4" cols="10"></textarea>
+    <input type="submit" name="submit" value="Submit"></input>
+</form>
+
+@RenderPage("../footer.cshtml")

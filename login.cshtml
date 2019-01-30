@@ -1,0 +1,99 @@
+﻿
+@{
+var db = Database.Open("Glyphs");
+
+string uc = "SELECT * FROM users Where username = @0" ; 
+string up = "SELECT * FROM users Where password = @0" ;
+//keeps safe: https://www.asp.net/web-pages/overview/getting-started/introducing-aspnet-web-pages-2/entering-data
+string ucp = "SELECT * FROM users Where username = @0 AND password = @1" ; 
+
+var e = "£";
+int iu = 4143543;
+int ip = 4143543;
+
+int co = 0;
+var cp = 0;
+var d = "dda000";
+var eu = "declared";
+int log = 0;
+var email = "email";
+
+}
+
+
+    
+
+@{
+
+                        
+       if (IsPost){
+          var user = Request["user"];
+           var pass = Request["pass"];
+           
+           Validation.RequireField("user");
+           Validation.RequireField("pass");
+           if (Validation.IsValid("user") && Validation.IsValid("pass")) {
+               @RenderPage("design.cshtml")
+
+                d = Crypto.SHA256(pass + user);
+
+                foreach(var us in db.Query(ucp, user, d)){
+                    co += 1;
+                    email = @us.email;
+                }
+                
+                if (co == 1){
+                        Session["logout"] = null;
+                            Session["logged"] = user;
+                            
+                            <h2>Log in</h2>
+                            <p>logged on!</p>
+                            
+               }
+                else{
+                    <h2>Log in</h2>
+                            <p>Couldn't log in.</p>
+                           
+                            <p>@pass</p>
+                             <p>@d</p>
+                }
+                        
+                
+           }
+           else if(Validation.IsValid("user")){
+               @RenderPage("design.cshtml")
+                <h2>Log in</h2>
+               <p>You need to enter your password.</p>
+           }
+           else if(Validation.IsValid("pass")){
+               @RenderPage("design.cshtml")
+                <h2>Log in</h2>
+               <p>You need to enter your username.</p>
+           }
+           else{
+               @RenderPage("design.cshtml")
+                <h2>Log in</h2>
+               <p>You need to enter your username and password.</p>
+           }
+           
+                
+         
+       }
+
+       else{
+           @RenderPage("design.cshtml")
+            <h2>Log in</h2>
+
+           <form action="login.cshtml" method="post">
+
+            <table>
+                <tr><td>Username:</td><td><input type="text" name="user"></input></td></tr>
+                <tr><td>Password:</td><td><input type="password" name="pass"></input></td></tr>
+            </table>
+               <input type="submit" name="submit" value="Submit"></input>
+               </form>
+            <p>Don't have a user: <a href="register.cshtml">Register</a></p>
+       }
+ }
+
+@RenderPage("footer.cshtml")

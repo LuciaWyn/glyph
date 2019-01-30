@@ -1,0 +1,25 @@
+﻿  @RenderPage("design.cshtml")
+@{
+var db = Database.Open("Glyphs"); 
+var query = "SELECT * FROM icons"; 
+var ic = ".png";
+
+}
+
+
+      
+        <table>       
+             @foreach(var row in db.Query(query))
+            {
+            <tr> 
+            <td><P>@row.name</p></td> 
+            <td>@row.image</td> 
+                
+                <td><img src='images/@row.name@ic' alt="@row.image" title="@row.image"/></td>
+            </tr> 
+            }
+        </table>
+
+        </page>
+    </body>
+</html>

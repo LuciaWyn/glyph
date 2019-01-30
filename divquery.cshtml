@@ -1,0 +1,67 @@
+﻿@RenderPage("design.cshtml")
+@{
+var db = Database.Open("Glyphs"); 
+string quiz = Request.QueryString["quiz"];
+
+string choice = "SELECT * FROM Questionaires Where id= @0" ; 
+
+
+foreach(var questioning in db.Query(choice, quiz))
+                    {
+                        <h2>@questioning.Name</h2>
+                        <p>@questioning.Description</p>
+                        
+                    }
+
+                   
+                        
+        if (IsPost){
+            string number = Request["no"];
+           
+                    
+            }
+
+        
+        else
+        {
+        
+   
+    
+               
+        
+
+            <h2>Select the number questions, you would like to do</h2>
+
+            <form method="post" action="">
+                <select name="no">
+            @for (int amount = 10; amount <= 100; amount++){
+                int count = 9;
+
+                int som = amount;
+
+             <option value="@som">@som</option><br>
+
+
+
+            
+             
+         
+               
+                
+                 amount  = @amount + @count;
+   
+            }
+                    </select>
+             <input type="submit" value="Submit" class="submit">
+            </form>  
+        
+            
+
+        }
+        
+    
+
+}
+
+
+@RenderPage("footer.cshtml")

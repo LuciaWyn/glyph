@@ -1,0 +1,29 @@
+﻿
+
+
+@RenderPage("design.cshtml")
+@{
+    var db = Database.Open("Glyphs"); 
+    var clas = "SELECT * FROM Classifications"; 
+
+}
+
+
+
+   
+            <div id="clf">
+                <h2>Signs</h2>
+                    <ul>
+                    @foreach(var types in db.Query(clas)){
+                            <li><a href="Signs/classification.cshtml?type=@types.section">@types.section &#160; @types.description</a></li>
+                                
+                            }
+                    </ul>
+            </div>
+           
+           
+      
+
+
+@RenderPage("footer.cshtml")
+

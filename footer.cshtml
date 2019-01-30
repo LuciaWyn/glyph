@@ -1,0 +1,67 @@
+﻿    
+<div id="last" style="position: absolute; width: 100%; "></div>
+</main>
+
+    <footer id="end">
+        <p>The way to learn!</p>
+    </footer>
+
+    </body>
+<script>
+
+
+
+
+    window.onload = function ()
+    {
+        var h = window.innerHeight
+        || document.documentElement.clientHeight
+        || document.body.clientHeight;
+
+        
+        ph = h + "px";
+
+
+        body = document.body;
+        var bh = body.scrollHeight;
+        var bns = body.offsetHeight;
+
+        var icon = document.getElementById("last");
+        var icont = icon.offsetTop;
+
+        var htmlheight = document.body.parentNode.clientHeight;
+        var windowheight = window.screen.height;
+
+        var pi = icont + 150;
+        var pt = pi + "px";
+        if (h > pi)
+        {
+            document.getElementById("end").style.top = ph;
+        }
+        else{
+            document.getElementById("end").style.top = pt;
+        }
+        //canvas
+
+        var fscreen = screen.height;
+        var ascreen = screen.width;
+        var cscreen = document.getElementById("canvas");
+        var ctx = cscreen.getContext("2d");
+        var my_gradient = ctx.createLinearGradient(0, 0, 0, 200);
+        my_gradient.addColorStop(0, "yellow");
+        my_gradient.addColorStop(1, "red");
+        ctx.fillStyle = my_gradient;
+        ctx.fillRect(0, 0, ascreen, fscreen);
+
+       
+            
+        
+    }
+    
+
+
+
+
+
+</script>
+</html>

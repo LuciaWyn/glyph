@@ -1,0 +1,231 @@
+canvas{
+    top: 0;
+    left: -10px;
+    position:fixed; 
+    z-index:-1;
+    width: 110%;
+    height: 100%;
+    overflow: hidden;
+    margin-left: 0%;
+    margin-top: 0;
+        /*background: red;  For browsers that do not support gradients */
+    background: -webkit-linear-gradient(yellow, red); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(yellow, red); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(yellow, red); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(yellow, red); /* Standard syntax (must be last) */
+}
+header, #nav{
+  position: absolute;
+
+}
+header, #nav, main {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    
+    
+}
+body{
+    width:100%;
+    overflow-x: hidden;
+    
+
+}
+header{
+    width: 100%;
+    position: absolute;
+   
+    top: 0px;
+    margin-bottom: 40px;
+}
+#nav {
+    
+ position: absolute;
+    margin-top: 60px;
+    float: left;
+  /*  top: 50px;*/
+   min-width: 70%;
+   max-width: 100%;
+  overflow: hidden;
+    
+}
+/*
+main{
+    margin-left: 11%;
+    width: 90%;
+    position: absolute;
+}*/
+h1{
+    font-family: Arial;
+    font-size: 30px;
+    position: absolute;
+}
+#nav ul{
+    list-style-type: none;
+    float: left;
+    text-align: left;
+    padding-left:  0px;
+    width: 100%;
+   
+    
+}
+#nav ul li{
+    padding: 5px 2px;
+    width: 7%;
+    border:  1px solid blue;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    color: #000;
+    background-color: blue;
+    display: inline-block;
+    
+}
+#nav ul li a{
+    
+    text-decoration: none;
+    font-family: Arial;
+    color: yellow;
+    font-weight: bold;
+}
+#nav ul li:hover{
+    background-color: yellow;
+    border:  1px solid blue;
+    color: blue;
+}
+#nav ul li a:hover{
+    color: blue;
+    font-weight: bolder;
+}
+p, h1, h2, h3 {
+    font-family: Arial;
+}
+table{
+    font-family: Arial;
+    text-align: left; 
+    padding: 2px;
+}
+
+#clf{
+    min-width: 400px;
+    width: 100%;
+   vertical-align: top;
+   background-color: #f5c71a;
+   padding: 10px;
+      display: table-row;
+    
+}
+#clf ul{
+    list-style-type: none;
+    float: left;
+    text-align: left;
+    padding-left:  3px;
+    font-weight: bold;
+ 
+    width: 90%;
+}
+#clf ul li
+{
+    margin-top: 3px;
+}
+#clf ul li a{
+    text-decoration: none;
+    font-family: Arial;
+    color: #002366;
+}
+#clf ul li {
+    border: 2px solid #b59107;
+}
+#clf ul li:hover {
+    background-color: white;
+}
+main{
+     margin-top: 120px;
+    float: left;
+    padding: 10px;
+    background-color: white;
+    position: absolute;
+    min-width: 70%;
+   max-width: 100%;
+}
+main p, h2, h3, ul, ol, image{
+   
+    color:  black;
+}
+#icon{
+    display: inline;
+    margin-right: 10px;
+}
+#aquiz  {
+    list-style-type: none;
+    float: left;
+    text-align: left;
+    padding-left:  0px;
+    width: 100%;
+}
+#aquiz p  {
+    display:  inline;
+}
+
+#quizer {
+    padding-left: 1%;
+    border:  3px solid blue;
+    background-color: #ffd64d;
+    width: 30%;
+    display: inline-block;
+    margin-bottom: 50px;
+}
+#quizer h3, p {
+    color: blue;
+}
+
+#iconshow {
+    display: inline-block; 
+    width: 24%;
+}
+
+#lesson{
+    
+    width: 90%;
+    font-family: Arial;
+    color: #002366;
+}
+#lesson ul {
+    list-style-type: none;
+}
+#lesson ul li {
+    border: 2px solid black;
+    border-width: 2px;
+    width: 300px;
+    display:  inline-block;
+}
+#lesson a{
+    text-decoration: none;
+    font-family: Arial;
+    color: #002366;
+    
+}
+body{
+    
+    overflow-y: scroll;
+    max-width: 100%;
+}
+
+footer{
+    position: absolute;
+background-position: center bottom;
+ height: 70px;
+	left:0;
+   display: inline;
+   padding-top: 20px;
+   margin-top: 20px;
+   bottom: 0;
+   width: 100%;
+   clear:both;
+   background-color: black;
+   
+   
+}
+footer p{
+    color: yellow;
+    
+}

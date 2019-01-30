@@ -1,0 +1,317 @@
+﻿
+
+
+            @RenderPage("design.cshtml")
+            <h2>Signs Test</h2>
+            @{
+                var db = Database.Open("Glyphs"); 
+                var ino = "SELECT top 1 * FROM icons ORDER BY NEWID()"; 
+                var ic = ".png";
+                var inn = "SELECT * FROM icons WHERE image != @0 ORDER BY NEWID()"; 
+                
+            Random r = new Random();
+             int x= r.Next(3);//Max range
+             int y= r.Next(3);
+             int o = r.Next(2);
+
+             var b = 0;
+             var p = 0;
+
+            
+          
+             
+
+            // var rw = 0;
+
+            }
+            <p>@x</p>
+
+            <p>Instructions: Select what the icons are</p>
+
+
+<p id="working"></p>
+
+@foreach(var row in db.Query(ino)){
+            
+ 
+               
+        
+                     <img src='images/@row.name@ic' alt="@row.name" title="@row.name"/>
+                       string right= @row.image;
+                       @p += 1;
+                       
+
+                        <script>
+                            var right = "@{@row.image;}";
+
+                            
+                           
+                        </script>
+
+                        
+                      
+                       
+                       
+                      // var g = 0;
+   
+
+                
+         
+
+                   @RenderPage("things.cshtml");
+
+                  var sa = "a"+@p;
+                  var sb = "b"+@p;
+                   var sc = "c"+@p;
+                
+                   var oa = "oa"+@p;
+                   var ob = "ob"+@p;
+                   var oc = "oc"+@p;
+
+                   
+                                                    
+                        
+                        <table>
+                               <col width="10">
+                               <col width="80%">
+
+                      <tr><td><input type="checkbox" id="@oa"></input></td><td id="@sa"></td> </tr>
+                                <tr><td><input type="checkbox" id="@ob"></input></td><td id="@sb"></td> </tr>
+                                <tr><td><input type="checkbox" id="@oc"></input></td><td id="@sc"></td></tr>
+                           
+                       
+                        </table>
+
+          
+                        
+                     
+                           
+                     
+                               <script>
+                                   
+
+                                   //javascript rearrange
+                                  //var options = [right, j, k];
+                                                              
+                                   if ( j == right && ot != right){
+                                     var options = [right, ot, k];
+                                   }
+                                   if ( k == right && ot != right){
+                                     var options= [right, j, ot];
+                                   }
+                                   else {
+                                     var options = [right, j, k];
+                                   }
+                      
+                                    
+
+                                    var w = Math.random(2).toFixed(0);
+                     
+                                    
+                                    
+
+                       
+                                   document.getElementById("@sa").innerHTML = options[w];
+                                   var n = Math.random(1).toFixed(0);
+                       
+                                   if (w == 0)
+                                   {
+                                        
+                                        if (n == 0)
+                                        {
+                                            
+                                            document.getElementById("@{ @sc;}").innerHTML = options["2"];
+                                            document.getElementById("@{ @sb;}").innerHTML = options["1"];
+                                        }
+                                        else
+                                        {
+                                           
+                                            document.getElementById("@{ @sc;}").innerHTML = options["1"];
+                                            document.getElementById("@{ @sb;}").innerHTML = options["2"];
+                                        }
+                                   }       
+                                   if (w == 1 ) {
+ 
+                            
+                                        if (n == 0)
+                                        {
+                                           
+                                            document.getElementById("@{ @sb;}").innerHTML = options["0"];
+                                            document.getElementById("@{ @sc;}").innerHTML = options["2"];
+                                        }
+                                        else
+                                        {
+                                         
+                                            document.getElementById("@{ @sc;}").innerHTML = options["0"];
+                                            document.getElementById("@{ @sb;}").innerHTML = options["2"];
+                                        }
+                                   }                
+                    
+                                   if (w == 2) {
+
+                                  
+
+                                        document.getElementById("@{ @sb;}").innerHTML = opt[n];
+                            
+                                        if (n == 0)
+                                        {
+                                            document.getElementById("@{ @sc;}").innerHTML = opt["1"];
+                                        }
+                                        else
+                                        {
+                                            document.getElementById("@{ @sc;}").innerHTML = opt["0"];
+                                        }
+                       
+                                   }
+
+ 
+                                   
+
+
+                                       function signs()
+
+                                        {
+                                            var a = document.getElementById("@{ @oa;}").checked;
+                                            var b = document.getElementById("@{@ob;}").checked;
+                                            var c = document.getElementById("@{@oc;}").checked;
+                                            
+                                          //  var t = 0;
+                                            //var f = 0;
+                                            
+
+                                            
+
+                                              
+                                   
+                                                                                  
+                                                                             
+                                            
+
+                                            if (w == 0) 
+                                            {
+                                                if (a == true) 
+                                                {
+                                                    ++t;
+                                                }
+                               
+                                                
+                                                if (b == true) 
+                                                {
+                                                    ++f;
+                                                }
+
+                                                if (c == true) 
+                                                {
+                                                    ++f;
+                                                }
+                                            }
+
+                                            if (w == 1) 
+                                            {
+                                                 if (a == true) 
+                                                {
+                                                    ++f;
+                                                }
+                                                if (n == 0 && b == true)
+
+                                                {
+                                                    ++t;
+                                                }
+                                                if (n == 0 && c == true)
+
+                                                {
+                                                    ++f;
+                                                }
+                                                if (n == 1 && c == true)
+
+                                                {
+                                                    ++t;
+                                                }
+                                                if (n == 1 && b == true)
+
+                                                {
+                                                    ++f;
+                                                }
+
+                                               
+
+                                               
+                                            }
+
+                                            if (w == 2) 
+                                            {
+                                                 if (a == true) 
+                                                {
+                                                    ++f;
+                                                }
+
+                                                if (n == 0 && b == true)
+
+                                                {
+                                                    ++t;
+                                                }
+                                                if (n == 0 && c == true)
+
+                                                {
+                                                    ++f;
+                                                }
+                                                if (n == 1 && c == true)
+
+                                                {
+                                                    ++t;
+                                                }
+                                                if (n == 1 && b == true)
+
+                                                {
+                                                    ++f;
+                                                }
+
+                                                
+                                            }
+
+                                            document.getElementById("working").innerHTML = "true" +t+ "false"  + f;
+
+                                            //location.reload(false);
+
+                                             if (t == 1)
+                                          {
+                                              document.getElementById("tr").value = 1;
+                                          }
+                                          else
+                                          {
+                                              document.getElementById("tr").value = tr+1;
+                                          }
+                                        }
+
+                                   
+                                   
+                                    
+                               </script>
+
+    
+
+         
+
+
+
+
+             
+    @RenderPage("Signsanswer.cshtml");
+                           
+    <script>
+        
+
+
+
+
+
+   
+              </script> 
+
+}
+
+
+            @RenderPage("footer.cshtml");
+
+
+

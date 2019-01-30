@@ -1,0 +1,162 @@
+﻿
+            @RenderPage("design.cshtml")
+            <h2>Signs Test</h2>
+            @{
+                var db = Database.Open("Glyphs"); 
+                var ino = "SELECT * FROM icons ORDER BY NEWID()"; 
+                var ic = ".png";
+                var inn = "SELECT * FROM icons WHERE image != @0 ORDER BY NEWID()"; 
+
+            Random r = new Random();
+             int x= r.Next(3);//Max range
+             int y= r.Next(3);
+             int o = r.Next(2);
+
+             var b = 0;
+             var p = 0;
+
+          
+             
+
+            // var rw = 0;
+
+            }
+            <p>@x</p>
+
+            <p>Instructions: Select what the icons are</p>
+
+
+@foreach(var row in db.Query(ino)){
+            
+ 
+               
+        
+                     <img src='images/@row.name@ic' alt="@row.name" title="@row.name"/>
+                       var right= @row.image;
+                       @p += 1;
+
+           
+
+                        
+                      
+                       
+                       
+                      // var g = 0;
+                var c = 0;
+
+                   foreach (var rw in db.Query(inn, @row.image)){
+                       
+                      
+                        var c = 0;
+                          if (@c == 0){
+                  
+                              var g = 0;
+                              c = @g + 1; 
+                              var j = @rw.image;
+                              <script>
+                                    var j = "@rw.image";
+                                </script>
+                              //<p>@j</p>
+                              //continue;
+                          }
+              
+                          if (@c == 1 ) {
+                
+                                var g = c;
+                              c = @g + 1; 
+                                var k = @rw.image;
+                                //<p>@k</p>;
+                                <script>
+                                    var k = "@rw.image";
+                                </script>
+                            }
+                            if (@c == 2){
+
+                                //done to make value unique on the page
+                                var sa = "a"+@p;
+                                var sb = "b"+@p;
+                                var sc = "c"+@p;
+                    
+                                <p id="@sa"></p>
+                                <p id="@sb"></p>
+                                 <p id="@sc"></p>
+        
+                    
+                                //javascript rearrange
+                               <script>
+                                  
+                                   var right= "@row.image";
+
+                                    var options = [right, j, k];
+
+                                    var w = Math.random(2).toFixed(0);
+                     
+                        
+                                    document.getElementById("@{ @sa;}").value = options[w];
+
+                       
+
+                                   var n = Math.random(1).toFixed(0);
+                       
+                                   if (w == 0)
+                                   {
+                            
+                                       var opt = [j, k];
+                                        document.getElementById("@{ @sb;}").innerHTML = opt[n];
+
+                                        if (n == 0)
+                                        {
+                                            document.getElementById("@{ @sc;}").innerHTML = opt["1"];
+                                        }
+                                        else
+                                        {
+                                            document.getElementById("@{ @sc;}").innerHTML = opt["0"];
+                                        }
+                                   }       
+                                   if (w == 1 ) {
+                                        var opt = ["@row.image;", k];
+
+                                        document.getElementById("@{ @sb;}").innerHTML = opt[n];
+                            
+                                        if (n == 0)
+                                        {
+                                            document.getElementById("@{ @sc;}").innerHTML = opt["1"];
+                                        }
+                                        else
+                                        {
+                                            document.getElementById("@{ @sc;}").innerHTML = opt["0"];
+                                        }
+                                   }                
+                    
+                                   if (w == 2) {
+
+                                   var opt = ["@row.image;", j];
+
+                                        document.getElementById("@{ @sb;}").innerHTML = opt[n];
+                            
+                                        if (n == 0)
+                                        {
+                                            document.getElementById("@{ @sc;}").innerHTML = opt["1"];
+                                        }
+                                        else
+                                        {
+                                            document.getElementById("@{ @sc;}").innerHTML = opt["0"];
+                                        }
+                       
+                                   }
+                       
+                               </script>
+                    
+                              break;
+                         }
+                   }
+                
+   
+    
+    
+         
+}
+            @RenderPage("footer.cshtml")
+
+
+

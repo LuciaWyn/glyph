@@ -1,0 +1,13 @@
+﻿@{Session["logout"] = "out";}
+
+
+
+
+@{
+var logged = Session["logged"];
+                            // Store
+                            Session["logged"] = null;
+}
+@RenderPage("design.cshtml")
+<h2>Log out</h2>
+@RenderPage("footer.cshtml")

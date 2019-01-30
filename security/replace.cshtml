@@ -1,0 +1,44 @@
+﻿@{
+    //this connects to the database
+     var db = Database.Open("Glyphs");
+    //queries
+    string users = "SELECT * FROM users" ; 
+    var pass = "";
+    var change = "";
+}
+
+@RenderPage("design.cshtml")
+<h2>SHA1 replacement charcters</h2>
+<table border="1">
+                <tr><td>original SHA1 raw from the database</td><td>Character Replacement</td></tr>
+        @foreach(var re in db.Query(users)){
+            //replacing capital B with 9
+            pass= @re.password;
+
+            change = pass.Replace("B", "9");
+
+            //replacing 5 with 9
+
+            change = change.Replace("9", "5");
+
+            //replace 5 with 15
+
+            change = change.Replace("5", "15");
+
+            //replace 1 with F
+
+            change = change.Replace("1", "F");
+
+            //replace 4 with A with j
+
+            change = change.Replace("A", "J");
+
+            /*the change variable at the begginning is different to the change variable at the end.
+            this is because the change variable at the beggining of the code just replaces B with 9.
+            The next replacement, replaces the original Bs with 5, as ( in the original and first changed 
+            is turned into 5s */
+
+            <tr><td>@re.password</td><td>@change</td></tr>
+        }
+</table>
+@RenderPage("../footer.cshtml");

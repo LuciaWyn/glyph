@@ -1,0 +1,60 @@
+﻿@{
+  var db = Database.Open("Glyphs"); 
+  var inn = "SELECT * FROM icons WHERE image != @0 ORDER BY NEWID()"; 
+ // string t = Request.QueryString["right"];
+  var t= "something";    
+  var c = 0;
+  var g = 0;        
+          
+  }
+@foreach (var rw in db.Query(inn, t)){
+                       
+                      
+                        
+                        
+                          if (@c == 0){
+                  
+                              
+                              c = @g + 1; 
+                              var j = @rw.image;
+                              <script>
+                                    var j = "@rw.image";
+                                </script>
+                              //<p>@j</p>
+                              continue;
+                          }
+              
+                          if (@c == 1 ) {
+                
+                                g = c;
+                              c = @g + 1; 
+                                var k = @rw.image;
+                                //<p>@k</p>;
+                                <script>
+                                    var k = "@rw.image";
+                                </script>
+                                continue;
+                            }
+                            if (@c ==2){
+                                  g = c;
+                              c = @g + 1; 
+                                var ot = @rw.image;
+                                //<p>@k</p>;
+                                <script>
+                                    var ot = "@rw.image";
+                                </script>
+                                continue;
+                            }
+                            if (@c == 3){
+
+                                //done to make value unique on the page
+                              
+                    
+                                
+        
+                    
+                               
+                    
+                              break;
+                         }
+                   }

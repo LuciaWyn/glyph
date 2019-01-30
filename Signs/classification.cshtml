@@ -1,0 +1,53 @@
+﻿@RenderPage("design.cshtml")
+@{
+var db = Database.Open("Glyphs"); 
+string t = Request.QueryString["type"];
+string cl = "SELECT * FROM Classifications Where section= @0" ; 
+
+var data = db.Query(cl, t);
+
+var ic = ".png";
+var four = 0;
+var rows = 0;
+}
+@{
+
+    var icon = "SELECT * FROM icons Where classification= @0"; 
+
+}
+<script>
+  //  var iconcal = main.offsetHeight;
+</script>
+
+           
+                     @foreach(var title in db.Query(cl, t))
+                    {
+                        <h2>@title.section &#160; @title.description</h2>
+                        
+                    }
+              
+             @foreach(var row in db.Query(icon, t))
+            {
+                four = four + 1;
+                if (four == 4){
+                    rows = rows + 1;
+                    four = 0;
+                }
+                <div id="iconshow">
+                <img src='/images/@row.name@ic' style="max-height: 150px; max-width: 150px;"  alt="@row.name" title="@row.name" id="icon"/>
+                <p>@row.name</p>
+                <p>@row.image</p>
+                <p><a href="icon.cshtml?icon=@row.name">More information...</a></p>
+                </div>
+                            
+            }
+<div id="last" ></div>
+
+@{
+    if (four != 0){
+        rows = rows + 1;
+    }
+}
+
+
+@RenderPage("../footer.cshtml")

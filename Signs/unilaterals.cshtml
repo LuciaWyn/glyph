@@ -1,0 +1,71 @@
+﻿
+@RenderPage("design.cshtml")
+@{
+    var db = Database.Open("Glyphs"); 
+    var ic = ".png";
+
+    string ico = "SELECT * FROM signs WHERE appears = @0";
+
+    string alp = "alphabet";
+
+    string icons ="SELECT * FROM icons WHERE name= @0";
+
+    var mo = "d";
+    var so = "e";
+    var no = "x";
+    var pi = "A1";
+    }
+<h2>Unilateral Signs</h2>
+@{
+    
+    
+       foreach(var find in db.Query(ico, alp)){
+           
+                 pi = @find.icon;
+                 so = @find.sound;
+                no = @find.notes; 
+                <span id="iconshow"> 
+                    <img src='/images/@pi@ic' alt="@pi" title="@pi"/>
+                    <p>@so</p>
+                    <p>@pi</p>
+                    <p>@no</p>
+                    @foreach(var ik in db.Query(icons, pi)){
+                                    <p>@ik.image</p>
+                                
+                                }
+                    @{
+                        if (pi == "M17A"){
+                            <p>Flowering reeds</p>
+                        }
+                    }
+                </span>
+                 
+                      
+                 
+                
+
+                      /*
+                                */
+                
+               
+                                
+                
+                            
+                               
+                    
+                        
+                        
+                        
+                       
+                                }
+                 
+   
+    /*
+    
+     
+*/
+             }
+
+
+@RenderPage("../footer.cshtml")
+
